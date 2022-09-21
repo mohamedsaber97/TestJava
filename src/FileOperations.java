@@ -9,7 +9,9 @@ public class FileOperations extends Component {
     File readFile, writeFile;
     FileReader fileReader;
     BufferedReader bufferedReader;
-    InvoiceHeader invoiceHeader = new InvoiceHeader();
+    InvoiceHeader invoiceHeader;
+
+    ArrayList<InvoiceHeader> headerArrayList = new ArrayList<>();
 
     //method to read invoice header data from .csv file
     public ArrayList<InvoiceHeader> readFile() {
@@ -24,9 +26,8 @@ public class FileOperations extends Component {
                 bufferedReader = new BufferedReader(fileReader);
                 while ((line = bufferedReader.readLine()) != null) {
                     String[] data = line.split(","); // use comma as separator
-                    invoiceHeader.setInvoiceNum(data[0]);
-                    invoiceHeader.setInvoiceDate(data[1]);
-                    invoiceHeader.setCustomerName(data[2]);
+                    invoiceHeader = new InvoiceHeader(data[0], data[1], data[2]);
+                    headerArrayList.add(invoiceHeader);
                     System.out.println("Invoice "
                             + "["
                             + invoiceHeader.getInvoiceNum()
@@ -39,7 +40,7 @@ public class FileOperations extends Component {
                 e.printStackTrace();
             }
         }
-        return null;
+        return headerArrayList;
     }
 
 

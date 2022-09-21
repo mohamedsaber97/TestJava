@@ -52,7 +52,6 @@ public class TeatFrame extends JFrame implements ActionListener {
         model.setColumnIdentifiers(cols);
         table = new JTable(model);
         add(new JScrollPane(table));
-
     }
 
     @Override
