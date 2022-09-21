@@ -3,16 +3,16 @@ import java.util.ArrayList;
 public class InvoiceHeader {
 
     //definition of invoice header data
-    private int invoiceNum;
+    private String invoiceNum;
     private String invoiceDate;
     private String customerName;
     private ArrayList<InvoiceLine> invoiceLines;
 
-    public int getInvoiceNum() {
+    public String getInvoiceNum() {
         return invoiceNum;
     }
 
-    public void setInvoiceNum(int invoiceNum) {
+    public void setInvoiceNum(String invoiceNum) {
         this.invoiceNum = invoiceNum;
     }
 
