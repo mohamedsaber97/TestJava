@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class TeatFrame extends JFrame implements ActionListener {
 
@@ -14,6 +14,11 @@ public class TeatFrame extends JFrame implements ActionListener {
     JMenuItem loadFile, saveFile, exit;
     JTable table;
     JTextArea textArea;
+
+    FileOperations fileOperations = new FileOperations();
+    ArrayList<InvoiceHeader> readData = new ArrayList<>();
+    ArrayList<InvoiceHeader> savedData = new ArrayList<>();
+
 
     public TeatFrame() {
         super("Test Frame");
@@ -48,15 +53,14 @@ public class TeatFrame extends JFrame implements ActionListener {
         table = new JTable(model);
         add(new JScrollPane(table));
 
-        textArea = new JTextArea();
-        add(new JScrollPane(textArea));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         switch (e.getActionCommand()) {
-            case "l" -> openFile();
-            case "s" -> saveFile();
+            case "l" -> readData = fileOperations.readFile();
+            case "s" -> savedData = fileOperations.writeFile();
             case "e" -> System.exit(0);
         }
     }
